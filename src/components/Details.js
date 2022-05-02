@@ -58,7 +58,7 @@ function Details() {
               <tbody className="">
                 {students ? (
                   <>
-                    {students?.map((std, i) => (
+                    {students[0]?.map((std, i) => (
                       <tr key={i}>
                         <th scope="row">{i + 1}</th>
                         <td>{std?.name}</td>

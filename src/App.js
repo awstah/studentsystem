@@ -12,18 +12,19 @@ import { addStudent } from "./features/slices/StudentsSlice";
 function App() {
   const [isloading, setisloading] = useState(true);
   const [data, setdata] = useState([]);
-  console.log(data);
+
   const dispatch = useDispatch();
   const getStudentsHandler = () => {
     setisloading(true);
     StudentServices.getStudentsData().then((res) => {
-      dispatch(setdata(res.data.students));
+      dispatch(addStudent(res.data.students));
       setisloading(false);
     });
   };
   useEffect(() => {
     getStudentsHandler();
   }, []);
+
   return (
     <div>
       <Routes>
