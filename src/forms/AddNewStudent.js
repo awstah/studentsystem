@@ -5,7 +5,7 @@ import TextField from "../components/TextField";
 import SelectField from "./../components/SelectField";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addStudent } from "../features/slices/StudentsSlice";
+import { addNewRecord } from "../features/RecordSlice";
 
 function AddNewStudent() {
   const studentSchema = Yup.object().shape({
@@ -27,7 +27,7 @@ function AddNewStudent() {
 
   const onSubmit = (values) => {
     console.log(values);
-    dispatch(addStudent(values));
+    dispatch(addNewRecord(values));
     navigate("/");
   };
 

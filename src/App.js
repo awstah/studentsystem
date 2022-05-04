@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Layout from "./Layout";
@@ -6,20 +6,13 @@ import AddStudent from "./pages/AddStudent";
 import AboutUs from "./pages/AboutUs";
 import Notfound from "./pages/Notfound";
 import { useDispatch } from "react-redux";
-import StudentServices from "./services/students";
-import { addStudent } from "./features/slices/StudentsSlice";
+
+import { getRecord } from "./features/RecordSlice";
 
 function App() {
-  const [isloading, setisloading] = useState(true);
-  const [data, setdata] = useState([]);
-
   const dispatch = useDispatch();
   const getStudentsHandler = () => {
-    setisloading(true);
-    StudentServices.getStudentsData().then((res) => {
-      dispatch(addStudent(res.data.students));
-      setisloading(false);
-    });
+    dispatch(getRecord());
   };
   useEffect(() => {
     getStudentsHandler();
@@ -29,7 +22,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home isloading={isloading} />} />
+          <Route index element={<Home />} />
           <Route path="add-student" element={<AddStudent />} />
           <Route path="about-us" element={<AboutUs />} />
           <Route path="*" element={<Notfound />} />
